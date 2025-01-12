@@ -425,7 +425,7 @@ lowBitMasks = new Array(0,1,3,7,15,31,63,127,255,511,1023,2047,4095,8191,16383,3
 
 // var bVk3x = window.asrsea(JSON.stringify(i3x), bsc9T(["流泪", "强"]), bsc9T(RU4Y.md), bsc9T(["爱心", "女孩", "惊恐", "大笑"]));
 
-paramA = {'csrf_token':'90034247236ad3bce9419c4ba49b7da9'};  // i3x 其实就是Token值
+// paramA = {'csrf_token':'90034247236ad3bce9419c4ba49b7da9'};  // i3x 其实就是Token值
 paramB = '010001';
 paramC = '00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7';
 paramD = '0CoJUm6Qyw8W8jud';
@@ -468,20 +468,16 @@ function asrsea(d, e, f, g) {
         h
 }
 
-// console.log(asrsea(JSON.stringify(paramA), paramB, paramC, paramD))
 
 // 这个函数其实是唬人的，就是从 cookie 中提取 csrf，所以其实可以跳过
 // 但为了连贯，可以保留
 
-// cookie = 'NTES_P_UTID=9cbVR7YaULdNkh7EveYAUAHjGtu6xn2r|1723680676; P_INFO=biaobro@163.com|1723680676|0|mail163|00&99|bej&1723647087&mail163#bej&null#10#0#0|&0|mail163|biaobro@163.com; nts_mail_user=biaobro@163.com:-1:1; _ntes_origin_from=google; NMTID=00OvmzaV4OIuhVwoUqPhnv78is21qUAAAGUWGE6tg; _iuqxldmzr_=32; _ntes_nnid=5b5e7787ebf5e761569ef6b0301df071,1736649554638; _ntes_nuid=5b5e7787ebf5e761569ef6b0301df071; WEVNSM=1.0.0; WNMCID=vbehmi.1736649554906.01.0; WM_NI=EQio7qxGNdM8Yi5qXmQZGxNDusmS4qZR10ZqIhim91Ty59b8jzKjTxz1kw0Fvon4Kh9Q%2BSvMtPvoFGidHcdoHPs%2BS71aWLmSkxp7xMLqfXjAvolCwqaOrB5HiJ87bCuNNXY%3D; WM_NIKE=9ca17ae2e6ffcda170e2e6eea4c67aedafbeb1c174abb88fa6c45b839a8a87d64681bf9e86c546a9989d94d32af0fea7c3b92a878fa790b67bbc998285d0349bb7fb92db6793868999cd50b7ada3b4b77b9a8effd1d97b8bb8a78ebc3b98a7fbdae134aaa6858bd774baefa598b34eb6b1a2d5ca64fb8fe5b4f547b890ba90c54dabbc8884e7658c90bdccd23df3bf99adf059a9a8c0d8fb4790afaab9e94bb6b1a4a4f67ba391bea3b844ab96f8d8e149b79282b9dc37e2a3; ntes_utid=tid._.akJiVJkWY6FFRgFAVEPWZDfQKBZ1entO._.0; sDeviceId=YD-2Nj%2FhdViOYdBU0BUBUODIXeBKQc1e3o2; __snaker__id=hYVqnoPW3Sua3caN; WM_TID=uSwf1189LFZAAAQRAFeGMTfQPRNgCXs4; gdxidpyhxdE=IWbKMCsxtfatXZA3Y7CRkLGW7BPfAsxk6mbwwM7YTNeOgCs4CC5pjo%2F1qvujMWSXuqncX3P7%2FDVqP1was9RxPlDnsJu0nZ6M2SQbxQ9f2pp6TYGv2pG9wyk%2B3GdYNMjxDEAmHTf8mqr%2Bb5vACH2VnJ%2Fh6%2Fbr5h%2BwhpZA6SWbnV7byldt%3A1736650642034; __csrf=90034247236ad3bce9419c4ba49b7da9; ntes_kaola_ad=1; playerid=19538913; JSESSIONID-WYYY=Y%5C8e9sBp8I35DiEsJfmi1EQsSCRu9%2BhwdbWZdNGAjFfeIrOFd0kSw1r%5C0X%5CAx0qZjjst%2B520W8QNJCvg%2FTmEP%2FCGnsqbO6%2B5iOCs91GZOENVHBdHgP2Ae9FumPxjfJ%5CD2dmEMK55iZG2KHjD9uiJfjp4aqCSGa2%2Fm3%5Ce53vfglZ07iaK%3A1736656269280'
 
 function geti3x(cookie, Z3x) {
-    var i3x = {};
     Z3x = '__csrf';
-    var tk7d = cookie // 这里做了改造以适配Python 传进来的字典
+    var tk7d = cookie
         , vh8Z = "\\b" + Z3x + "="
         , bfm6g = tk7d.search(vh8Z);
-    console.log(tk7d)
     if (bfm6g < 0)
         return "";
     bfm6g += vh8Z.length - 2;
@@ -489,15 +485,111 @@ function geti3x(cookie, Z3x) {
     if (zl9c < 0)
         zl9c = tk7d.length;
 
-    i3x["csrf_token"] = tk7d.substring(bfm6g, zl9c) || ""
-    return i3x
+    return tk7d.substring(bfm6g, zl9c) || ""
 };
 
 // console.log(geti3x(cookie))
+const be3x = {}
+const Hb2x = function (i3x, u3x) {
+    try {
+        u3x = u3x.toLowerCase();
+        if (i3x === null)
+            return u3x === "null";
+        if (i3x === undefined)
+            return u3x === "undefined";
+        return be3x.toString.call(i3x).toLowerCase() === "[object " + u3x + "]"
+    } catch (e) {
+        return !1
+    }
+};
 
-function getEncryptParams(cookie){
-    i3x = geti3x(cookie);
-    return asrsea(JSON.stringify(i3x), paramB, paramC, paramD)
+const fS4W = function (i3x) {
+    return Hb2x(i3x, "string")
 }
 
-// console.log(getEncryptParams(cookies))
+const F = function (bU3x, x) {
+    return !1
+}
+
+const X = function (gL5Q, bU3x, ej4n) {
+    if (!gL5Q || !bU3x)
+        return gL5Q;
+    ej4n = ej4n || F;
+    for (var x in bU3x) {
+        if (bU3x.hasOwnProperty(x) && !ej4n(bU3x[x], x))
+            gL5Q[x] = bU3x[x]
+    }
+    return gL5Q
+}
+
+gO5T = function (i3x) {
+    return Hb2x(i3x, "function")
+}
+
+bh3x = function (k3x, cH4L, O3x) {
+    if (!k3x || !k3x.length || !gO5T(cH4L))
+        return this;
+    if (!!k3x.forEach) {
+        k3x.forEach(cH4L, O3x);
+        return this
+    }
+    for (var i = 0, l = k3x.length; i < l; i++)
+        cH4L.call(O3x, k3x[i], i, k3x);
+    return this
+}
+
+Xn5s = function (is5x, Xi5n) {
+    var iH5M = {};
+    bh3x((is5x || "").split(Xi5n), function (Z3x) {
+        var bfC6w = Z3x.split("=");
+        if (!bfC6w || !bfC6w.length)
+            return;
+        var J3x = bfC6w.shift();
+        if (!J3x)
+            return;
+        iH5M[decodeURIComponent(J3x)] = decodeURIComponent(bfC6w.join("="))
+    });
+    return iH5M
+}
+
+const gU5Z = function (bt3x) {
+    return Xn5s(bt3x, "&")
+}
+
+function getEncryptParams(data, cookie){
+    let i3x = {};
+    i3x = X(i3x, fS4W(data)? gU5Z(data) : data)
+    i3x["csrf_token"] = geti3x(cookie);
+
+    console.log(i3x)
+
+    // i3x =  {
+    //     logs: "[{\"action\":\"recommendclick\",\"json\":{\"id\":1913753881,\"alg\":\"alg-music-rec-unite-daily-vec-MIND_Embedding_202312043\",\"scene\":\"user-song\",\"position\":2,\"mainsite\":\"1\"}}]",
+    //     csrf_token: "90034247236ad3bce9419c4ba49b7da9"
+    // }
+
+    // dddd = '{"logs":"[{\"action\":\"recommendclick\",\"json\":{\"id\":1913753881,\"alg\":\"alg-music-rec-unite-daily-vec-MIND_Embedding_202312043\",\"scene\":\"user-song\",\"position\":2,\"mainsite\":\"1\"}}]","csrf_token":"90034247236ad3bce9419c4ba49b7da9"}'
+    // console.log(dddd)
+    //
+    paramA = JSON.stringify(i3x)//.replace(/\\"/g, '"')
+    console.log(paramA)
+    console.log(typeof(i3x))
+    console.log(typeof(paramA))
+    //
+    // console.log(dddd === paramA)
+
+    return asrsea(paramA, paramB, paramC, paramD)
+}
+
+// data = 'resourcePositions=MainTabFollow'
+// data = "logs=%5B%7B%22action%22%3A%22recommendclick%22%2C%22json%22%3A%7B%22id%22%3A1400453707%2C%22alg%22%3A%22alg-music-rec-a3_recall-author-hpCover-unrestricted%22%2C%22scene%22%3A%22user-song%22%2C%22position%22%3A0%2C%22mainsite%22%3A%221%22%7D%7D%5D"
+// cookie = 'NTES_P_UTID=9cbVR7YaULdNkh7EveYAUAHjGtu6xn2r|1723680676; P_INFO=biaobro@163.com|1723680676|0|mail163|00&99|bej&1723647087&mail163#bej&null#10#0#0|&0|mail163|biaobro@163.com; nts_mail_user=biaobro@163.com:-1:1; _ntes_origin_from=google; NMTID=00OvmzaV4OIuhVwoUqPhnv78is21qUAAAGUWGE6tg; _iuqxldmzr_=32; _ntes_nnid=5b5e7787ebf5e761569ef6b0301df071,1736649554638; _ntes_nuid=5b5e7787ebf5e761569ef6b0301df071; WEVNSM=1.0.0; WNMCID=vbehmi.1736649554906.01.0; WM_NI=EQio7qxGNdM8Yi5qXmQZGxNDusmS4qZR10ZqIhim91Ty59b8jzKjTxz1kw0Fvon4Kh9Q%2BSvMtPvoFGidHcdoHPs%2BS71aWLmSkxp7xMLqfXjAvolCwqaOrB5HiJ87bCuNNXY%3D; WM_NIKE=9ca17ae2e6ffcda170e2e6eea4c67aedafbeb1c174abb88fa6c45b839a8a87d64681bf9e86c546a9989d94d32af0fea7c3b92a878fa790b67bbc998285d0349bb7fb92db6793868999cd50b7ada3b4b77b9a8effd1d97b8bb8a78ebc3b98a7fbdae134aaa6858bd774baefa598b34eb6b1a2d5ca64fb8fe5b4f547b890ba90c54dabbc8884e7658c90bdccd23df3bf99adf059a9a8c0d8fb4790afaab9e94bb6b1a4a4f67ba391bea3b844ab96f8d8e149b79282b9dc37e2a3; ntes_utid=tid._.akJiVJkWY6FFRgFAVEPWZDfQKBZ1entO._.0; sDeviceId=YD-2Nj%2FhdViOYdBU0BUBUODIXeBKQc1e3o2; __snaker__id=hYVqnoPW3Sua3caN; WM_TID=uSwf1189LFZAAAQRAFeGMTfQPRNgCXs4; gdxidpyhxdE=IWbKMCsxtfatXZA3Y7CRkLGW7BPfAsxk6mbwwM7YTNeOgCs4CC5pjo%2F1qvujMWSXuqncX3P7%2FDVqP1was9RxPlDnsJu0nZ6M2SQbxQ9f2pp6TYGv2pG9wyk%2B3GdYNMjxDEAmHTf8mqr%2Bb5vACH2VnJ%2Fh6%2Fbr5h%2BwhpZA6SWbnV7byldt%3A1736650642034; __csrf=90034247236ad3bce9419c4ba49b7da9; ntes_kaola_ad=1; playerid=19538913; JSESSIONID-WYYY=Y%5C8e9sBp8I35DiEsJfmi1EQsSCRu9%2BhwdbWZdNGAjFfeIrOFd0kSw1r%5C0X%5CAx0qZjjst%2B520W8QNJCvg%2FTmEP%2FCGnsqbO6%2B5iOCs91GZOENVHBdHgP2Ae9FumPxjfJ%5CD2dmEMK55iZG2KHjD9uiJfjp4aqCSGa2%2Fm3%5Ce53vfglZ07iaK%3A1736656269280'
+//
+// console.log(getEncryptParams(data, cookie))
+// kk = {
+//   logs: '[{"action":"recommendclick","json":{"id":1810657045,"alg":"alg-music-rec-unite-daily-vec-MIND_Embedding_202312041","scene":"user-song","position":1,"mainsite":"1"}}]',
+//   csrf_token: '90034247236ad3bce9419c4ba49b7da9'
+// }
+//
+// console.log(JSON.stringify(kk).replace(/\\"/g,'\\\\"'))
+

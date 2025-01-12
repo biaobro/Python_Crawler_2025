@@ -65,7 +65,7 @@ params = {
 cookie_list = [key + "=" + value for key, value in cookies.items()]
 cookie = '; '.join(item for item in cookie_list)
 
-data = execjs.compile(open('core.js', encoding='utf-8').read()).call('getEncryptParams', cookie)
+jsData = execjs.compile(open('core.js', encoding='utf-8').read()).call('getEncryptParams', 'NULL', cookie)
 
 # data = {
 #     'params': 'z2mJ5CVqJ4rzraZyeYSSgrK+j/w+d6/6VZPUaGssrYvrIqdkS6RlW56V5C32z8UqpEw6XykMsiKNktM0nGonNcq1KZ5f4305Gu6Wqfk4D5qP6xUj6tlcIZA6fErtXPkxf4unfNI2XmiOP7v21oir2rZlIuTd8izbmQz8y0I60lDOJO6SXqdTjvQ0BVsmV/hM',
@@ -73,14 +73,39 @@ data = execjs.compile(open('core.js', encoding='utf-8').read()).call('getEncrypt
 # }
 
 data = {
-    'params': data['encText'],
-    'encSecKey': data['encSecKey']
+    'params': jsData['encText'],
+    'encSecKey': jsData['encSecKey']
 }
 
-# response = requests.post('https://music.163.com/weapi/song/lyric', params=params, cookies=cookies, headers=headers, data=data)
-# print(response.text)
+print(data)
 
-response = requests.post('https://music.163.com/weapi/v2/discovery/recommend/songs', params=params, cookies=cookies,
-                         headers=headers, data=data)
+#
+response = requests.post('https://music.163.com/weapi/song/lyric', params=params, cookies=cookies, headers=headers, data=data)
 print(response.text)
 
+# 获取列表
+response = requests.post('https://music.163.com/weapi/v2/discovery/recommend/songs', params=params, cookies=cookies,
+                         headers=headers, data=data)
+# print(response.json())
+
+songs = response.json()['recommend']
+for song in songs:
+    name = song['name']
+    id = song['id']
+    alg = song['alg']
+    duration = song['duration']
+    print(name, id, alg, duration)
+
+# 点击播放
+
+# https://music.163.com/weapi/song/enhance/player/url/v1?csrf_token=90034247236ad3bce9419c4ba49b7da9
+
+data = {
+    'params': jsData['encText'],
+    'encSecKey': jsData['encSecKey']
+}
+
+response = requests.post('https://music.163.com/weapi/song/enhance/player/url/v1', params=params, cookies=cookies,
+                         headers=headers, data=data)
+print(response, flush=True)
+print('hhhh')
