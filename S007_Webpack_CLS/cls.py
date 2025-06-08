@@ -50,11 +50,11 @@ jscode = execjs.compile(open('half.js', 'r').read())
 sign = jscode.call('genSign')
 # print(sign)
 
-
+# 0608 验证：cookies 和 headers 保持不变，仅替换 params 中的time 参数即可发起新的请求
 params = {
     'app': 'CailianpressWeb',
-    'lastTime': '1748862334',
-    'last_time': '1748862334',
+    'lastTime': '1749349612',
+    'last_time': '1749349612',
     'os': 'web',
     'refresh_type': '1',
     'rn': '20',
