@@ -10,6 +10,7 @@
 @Version            : 1.0
 @Description        : None
 """
+import datetime
 import json
 import time
 
@@ -54,7 +55,7 @@ for page in range(1, 6):
                                                                                               respDataEncrypt)
     # logger.debug(respDataDecrypt)
     # logger.debug(type(respDataDecrypt))
-    logger.debug(f'{page} get {len(respDataDecrypt)} records.')
+    logger.debug(f'page {page} get {len(respDataDecrypt)} records successfully.')
     df = pd.concat([df, pd.DataFrame(respDataDecrypt)])
     time.sleep(10)
-df.to_excel('BirdReport.xlsx', index=False)
+df.to_excel(f'BirdReport_{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.xlsx', index=False)
