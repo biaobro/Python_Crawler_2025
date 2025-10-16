@@ -11,18 +11,6 @@
 @Description        : None
 """
 
-# !/usr/bin/env python3
-# _*_ coding:utf-8 _*_
-"""
-@File               : main.py
-@Project            : S021_MaShangPa_001
-@CreateTime         : 2025/10/16 08:13
-@Author             : biaobro
-@Software           : PyCharm
-@Last Modify Time   : 2025/10/16 08:13 
-@Version            : 1.0
-@Description        : None
-"""
 
 import requests
 from loguru import logger
